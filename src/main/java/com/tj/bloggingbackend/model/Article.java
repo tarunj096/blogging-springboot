@@ -1,9 +1,8 @@
 package com.tj.bloggingbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +20,13 @@ public class Article {
     private String title;
     private String description;
     private String body;
+
+    @ManyToOne
+    @JsonDeserialize(as = Article.class)
+    private User author;
+    /**
+     Article to User
+     1 -> 1
+     M <- 1
+     */
 }
