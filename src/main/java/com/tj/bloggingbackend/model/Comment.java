@@ -22,10 +22,12 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "author_id")
     private Article article;
 
     private String body;
 
     private Instant createdAt;
     private Instant updatedAt;
+
 }

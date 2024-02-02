@@ -1,6 +1,7 @@
 package com.tj.bloggingbackend.controller;
 
 import com.tj.bloggingbackend.dto.ArticlePostRequestDto;
+import com.tj.bloggingbackend.dto.ArticlePutRequestDto;
 import com.tj.bloggingbackend.model.Article;
 import com.tj.bloggingbackend.service.ArticleService;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,14 @@ public class ArticleController {
 
     @PostMapping("")
     public ResponseEntity<String> createArticle(@RequestBody ArticlePostRequestDto requestDto){
-        var newArticle = articleService.createNewArticle(requestDto);
+        articleService.createNewArticle(requestDto);
         return new ResponseEntity<>("Done", HttpStatus.CREATED);
     }
 
-    @PutMapping("")
-    public void updateArticle(){
-
+    @PutMapping("/{id}")
+    public Article updateArticle(@PathVariable Long id, @RequestBody ArticlePutRequestDto requestDto){
+        return articleService.update(id,requestDto);
+        //return new ResponseEntity<>("Done", HttpStatus.OK);
     }
 
 }

@@ -20,8 +20,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    @ManyToMany
-    @JsonDeserialize(as = User.class)
+    @OneToMany()
     private Set<Article> favoriteArticles;
 
 }
